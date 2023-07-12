@@ -2,6 +2,7 @@
 
 void StringTest()
 {
+	
 	//생성
 		//char	"asdf"
 		//wchar	L"asdf"
@@ -10,7 +11,7 @@ void StringTest()
 		// 
 
 	//대입 연산자 =
-
+	
 	//printf
 
 	//Format
@@ -24,9 +25,18 @@ void StringTest()
 	//operator *
 
 	//길이구하기
-
+	{
+		FString strA(TEXT("strA"));
+		int32 LenStrA = strA.Len();
+		check(LenStrA == 5);//assert
+	}
 	//Replace
 
+	{
+		FString str(TEXT("asdf"));
+		FString result=str.Replace(TEXT("sd"), TEXT("ds"));
+		check(result == TEXT("adsf"));
+	}
 	//insert
 
 	//clear
@@ -43,6 +53,11 @@ void StringTest()
 
 	
 	//Left
+	{
+		FString str(TEXT("qwerasdfzxcv"));
+		FString out=str.Left(4);
+		check(out == TEXT("qwer"));
+	}
 	//Mid
 	//Right
 
