@@ -50,8 +50,8 @@ bool FBelugaRotatorTest::RunTest(const FString& Parameters)
 	
 	FRotator c = { 2,4,9 };
 	FRotator t = { 0,4,2 };
-	FRotator r = { 0,0,0 };
-	
+	FRotator r = { 1,0,3 };
+	r.GetInverse();
 	TestEqual(TEXT("is not equal"), a + b, c);
 
 	return true;
