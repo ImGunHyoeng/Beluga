@@ -1,10 +1,10 @@
 #include "BelugaMinimal.h"
 #include "Misc/AutomationTest.h"
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FBelugaStringTest, "Beluga.String",\
+	IMPLEMENT_SIMPLE_AUTOMATION_TEST(FBelugaStringTest, "Beluga.String",\
 	EAutomationTestFlags::ApplicationContextMask | EAutomationTestFlags::EngineFilter)
 
-bool FBelugaStringTest::RunTest(const FString& Parameters)
+	bool FBelugaStringTest::RunTest(const FString& Parameters)
 {
 	//TestTrue(TEXT("Always FAIL"), true);//자동으로 테스트 실행됨
 	
@@ -26,7 +26,7 @@ bool FBelugaStringTest::RunTest(const FString& Parameters)
 	{
 		FString strA(TEXT("strA"));
 		//int32 LenStrA = strA.Len();
-		check(strA[7]);
+		check(strA[3]);
 	}
 	/*FORCEINLINE const TCHAR& operator[](int32 Index) const
 	{
@@ -44,7 +44,7 @@ bool FBelugaStringTest::RunTest(const FString& Parameters)
 	{
 		FString strA(TEXT("strA"));
 		int32 LenStrA = strA.Len();
-		check(LenStrA == 5);//assert
+		check(LenStrA == 4);//assert
 	}
 	//Replace
 
@@ -62,7 +62,7 @@ bool FBelugaStringTest::RunTest(const FString& Parameters)
 	//IsEmpty
 	{
 		FString str(TEXT("asdf"));
-		TestEqual(TEXT("isEmpty"), str.IsEmpty(), true);
+		TestEqual(TEXT("is not empty"), str.IsEmpty(), true);
 	}
 	/*UE_NODISCARD FORCEINLINE bool IsEmpty() const
 	{
@@ -82,7 +82,7 @@ bool FBelugaStringTest::RunTest(const FString& Parameters)
 		check(out == TEXT("qwer"));
 	}
 	//Mid
-	//Right
+
 
 	//대문자로 변환,소문자로 변환
 
@@ -90,3 +90,38 @@ bool FBelugaStringTest::RunTest(const FString& Parameters)
 	return true;
 }
 
+	IMPLEMENT_SIMPLE_AUTOMATION_TEST(FBelugaNameTest, "Beluga.Name", \
+		EAutomationTestFlags::ApplicationContextMask | EAutomationTestFlags::EngineFilter)
+	bool FBelugaNameTest::RunTest(const FString& Parameters)
+	{
+		{
+			FName name(TEXT("asdfvzxcvzxc"));
+			FName name2;
+			TestFalse(TEXT("is not ture"), name > name2);
+		}
+		return true;
+	}
+
+	IMPLEMENT_SIMPLE_AUTOMATION_TEST(FBelugaTextTest, "Beluga.Text", \
+			EAutomationTestFlags::ApplicationContextMask | EAutomationTestFlags::EngineFilter)
+	bool FBelugaTextTest::RunTest(const FString& Parameters) 
+	{
+		{
+			
+			FText b=FText::GetEmpty();
+			FName name(TEXT("HELLO"));
+			FName Uname(TEXT("HELLO"));
+			FText text = FText::FromName(name);
+
+			FText text2 = FText::FromName(Uname);
+
+			//= FText::Format(("sd", "You currently have {0} health left."), 100);
+			
+			text2.ToLower();
+			
+			bool istrue=text.EqualTo(text2);
+			TestEqual(TEXT("is not equal"), istrue, true);
+
+		}
+		return true;
+	}
